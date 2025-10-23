@@ -719,11 +719,11 @@
     }
 
     #contact {
-      background: rgba(0, 0, 0, 0.03);
+      background: rgba(252, 250, 250, 0.1);
     }
 
     .dark-theme #contact {
-      background: rgba(20, 20, 32, 0.6);
+      background: rgba(16, 16, 26, 0.6);
     }
 
     .contact-container {
@@ -964,10 +964,645 @@
       opacity: 1;
       transform: translateY(0);
     }
+.bg-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background: transparent;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--accent, #00d9ff);
+  opacity: 0.25;
+  filter: blur(0.5px);
+  will-change: transform, opacity;
+  box-shadow: 0 0 8px var(--accent, #00d9ff);
+  animation: particle-float linear infinite;
+}
+
+@keyframes particle-float {
+  0% {
+    transform: translate(var(--x-start), var(--y-start)) scale(var(--scale-start)) rotate(0deg);
+    opacity: var(--opacity-start);
+  }
+  50% {
+    transform: translate(var(--x-mid), var(--y-mid)) scale(var(--scale-mid)) rotate(360deg);
+    opacity: var(--opacity-mid);
+  }
+  100% {
+    transform: translate(var(--x-end), var(--y-end)) scale(var(--scale-end)) rotate(720deg);
+    opacity: var(--opacity-end);
+  }
+}
+
+@media (max-width: 768px) {
+  .particle {
+    opacity: 0.15;
+  }
+}
+/* Resume Section Styles */
+#resume {
+  background: rgba(0, 0, 0, 0.03);
+  position: relative;
+}
+
+.dark-theme #resume {
+  background: rgba(20, 20, 32, 0.6);
+}
+
+.resume-download {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.resume-download .btn {
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.resume-download .btn i {
+  font-size: 1.2rem;
+}
+
+/* Resume Timeline Styles */
+.resume-timeline {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.resume-timeline-section {
+  margin-bottom: 60px;
+}
+
+.resume-timeline-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid var(--accent);
+}
+
+.resume-timeline-header i {
+  font-size: 1.8rem;
+  color: var(--accent);
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+}
+
+.dark-theme .resume-timeline-header i {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.resume-timeline-header h3 {
+  margin-bottom: 0;
+  font-size: 2rem;
+  color: var(--text-color);
+}
+
+/* Timeline Items */
+.resume-timeline-content {
+  position: relative;
+  padding-left: 30px;
+}
+
+.resume-timeline-item {
+  display: flex;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.resume-timeline-marker {
+  position: relative;
+  margin-right: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.resume-marker-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 4px solid var(--card-bg);
+  box-shadow: 0 0 0 2px var(--accent);
+  z-index: 2;
+}
+
+.resume-marker-line {
+  width: 2px;
+  flex: 1;
+  background: var(--accent);
+  margin-top: 10px;
+  opacity: 0.5;
+}
+
+.resume-timeline-item:last-child .resume-marker-line {
+  display: none;
+}
+
+.resume-timeline-details {
+  flex: 1;
+  background: var(--card-bg);
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.resume-timeline-details:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.resume-timeline-date {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.resume-timeline-details h4 {
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+  color: var(--text-color);
+}
+
+.resume-timeline-subtitle {
+  font-size: 1.1rem;
+  color: var(--accent);
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.resume-timeline-description p {
+  margin-bottom: 15px;
+  line-height: 1.7;
+}
+
+.resume-timeline-description ul {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.resume-timeline-description li {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.resume-timeline-description li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.resume-subject-breakdown {
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 8px;
+  padding: 15px;
+  margin: 15px 0;
+}
+
+.dark-theme .resume-subject-breakdown {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.resume-subject-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.dark-theme .resume-subject-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.resume-subject-item:last-child {
+  border-bottom: none;
+}
+
+.resume-subject-name {
+  font-weight: 500;
+}
+
+.resume-subject-grade {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.resume-timeline-highlight {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.resume-highlight-tag {
+  background: rgba(67, 97, 238, 0.1);
+  color: var(--accent);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.dark-theme .resume-highlight-tag {
+  background: rgba(0, 217, 255, 0.15);
+}
+
+.resume-tech-used {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.resume-tech-tag {
+  background: rgba(0, 0, 0, 0.1);
+  color: var(--text-color);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.dark-theme .resume-tech-tag {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.resume-tech-tag:hover {
+  background: var(--accent);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Skills Categories */
+.resume-skills-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.resume-skill-category {
+  background: var(--card-bg);
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.resume-skill-category:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.resume-skill-category h4 {
+  color: var(--accent);
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.resume-skill-items {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.resume-skill-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.resume-skill-name {
+  flex: 0 0 150px;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.resume-skill-level {
+  flex: 1;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.dark-theme .resume-skill-level {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.resume-skill-progress {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 4px;
+  width: 0;
+  transition: width 1.5s ease-in-out;
+}
+
+.resume-skill-percent {
+  flex: 0 0 50px;
+  text-align: right;
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 0.9rem;
+}
+
+/* Achievements Grid */
+.resume-achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.resume-achievement-card {
+  background: var(--card-bg);
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.resume-achievement-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.resume-achievement-icon {
+  flex: 0 0 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(67, 97, 238, 0.1);
+  color: var(--accent);
+  border-radius: 50%;
+  font-size: 1.5rem;
+}
+
+.dark-theme .resume-achievement-icon {
+  background: rgba(0, 217, 255, 0.15);
+}
+
+.resume-achievement-content {
+  flex: 1;
+}
+
+.resume-achievement-content h4 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: var(--text-color);
+}
+
+.resume-achievement-meta {
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.resume-achievement-content p {
+  margin-bottom: 0;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Projects Grid */
+.resume-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.resume-project-card {
+  background: var(--card-bg);
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.resume-project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.resume-project-card h4 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+.resume-project-meta {
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+}
+
+.resume-project-card p {
+  margin-bottom: 20px;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.resume-project-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.resume-highlight {
+  background: rgba(67, 97, 238, 0.1);
+  color: var(--accent);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.dark-theme .resume-highlight {
+  background: rgba(0, 217, 255, 0.15);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .resume-timeline-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+  
+  .resume-timeline-content {
+    padding-left: 0;
+  }
+  
+  .resume-timeline-item {
+    flex-direction: column;
+  }
+  
+  .resume-timeline-marker {
+    flex-direction: row;
+    margin-right: 0;
+    margin-bottom: 15px;
+    align-items: center;
+  }
+  
+  .resume-marker-dot {
+    margin-right: 15px;
+  }
+  
+  .resume-marker-line {
+    width: 100%;
+    height: 2px;
+    margin-top: 0;
+  }
+  
+  .resume-timeline-item:last-child .resume-marker-line {
+    display: block;
+  }
+  
+  .resume-skill-item {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  
+  .resume-skill-name {
+    flex: 1;
+    width: 100%;
+  }
+  
+  .resume-skill-level {
+    width: 100%;
+  }
+  
+  .resume-skill-percent {
+    align-self: flex-end;
+  }
+  
+  .resume-achievement-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .resume-achievement-icon {
+    align-self: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .resume-skills-categories,
+  .resume-achievements-grid,
+  .resume-projects-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .resume-timeline-details {
+    padding: 20px;
+  }
+  
+  .resume-timeline-details h4 {
+    font-size: 1.2rem;
+  }
+  
+  .resume-project-highlights {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+/* Additional Resume Animations */
+@keyframes pulse-download {
+  0% {
+    box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(67, 97, 238, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(67, 97, 238, 0);
+  }
+}
+
+.downloading {
+  animation: pulse-download 1s;
+}
+
+/* Timeline entry animation */
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.resume-timeline-item {
+  animation: slideInFromLeft 0.6s ease forwards;
+}
+
+/* Stagger animation for multiple items */
+.resume-timeline-item:nth-child(1) { animation-delay: 0.1s; }
+.resume-timeline-item:nth-child(2) { animation-delay: 0.2s; }
+.resume-timeline-item:nth-child(3) { animation-delay: 0.3s; }
+.resume-timeline-item:nth-child(4) { animation-delay: 0.4s; }
+.resume-timeline-item:nth-child(5) { animation-delay: 0.5s; }
+
+/* Skill bar fill animation */
+@keyframes fillBar {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--target-width);
+  }
+}
+
+.resume-skill-progress.animated {
+  animation: fillBar 1.5s ease-out forwards;
+}
   </style>
 </head>
 
 <body class="dark-theme">
+    <div class="bg-particles" id="particles"></div>
+
   <button class="theme-toggle" id="themeToggle">
     <i class="fas fa-sun"></i>
   </button>
@@ -980,6 +1615,7 @@
         <li><a href="#home" class="nav-link active">Home</a></li>
         <li><a href="#about" class="nav-link">About</a></li>
         <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#resume" class="nav-link">Resume</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
       
@@ -1250,6 +1886,352 @@
       </div>
     </div>
   </section>
+
+   <!-- Enhanced Resume Section -->
+<section id="resume" class="section">
+  <div class="container">
+    <div class="section-title">
+      <h2>My Professional Journey</h2>
+      <p>A detailed overview of my education, experience, skills, and achievements</p>
+    </div>
+    
+    <div class="resume-download fade-in">
+      <a href="Anurag_Singh_Resume.pdf" download class="btn btn-primary">
+        <i class="fas fa-download"></i> Download Resume (PDF)
+      </a>
+    </div>
+
+    <!-- Resume Timeline Layout -->
+    <div class="resume-timeline">
+      <!-- Education Timeline -->
+      <div class="resume-timeline-section fade-in">
+        <div class="resume-timeline-header">
+          <i class="fas fa-graduation-cap"></i>
+          <h3>Education</h3>
+        </div>
+        <div class="resume-timeline-content">
+          <div class="resume-timeline-item">
+            <div class="resume-timeline-marker">
+              <div class="resume-marker-dot"></div>
+              <div class="resume-marker-line"></div>
+            </div>
+            <div class="resume-timeline-details">
+              <div class="resume-timeline-date">2024 - Present</div>
+              <h4>Bachelor of Technology in Data Science</h4>
+              <div class="resume-timeline-subtitle">Dev Bhoomi Uttarakhand University</div>
+              <div class="resume-timeline-description">
+                <p>Currently pursuing B.Tech with specialization in Data Science. Key coursework includes:</p>
+                <ul>
+                  <li>Data Structures and Algorithms</li>
+                  <li>Machine Learning Fundamentals</li>
+                  <li>Statistical Analysis and Probability</li>
+                  <li>Database Management Systems</li>
+                  <li>Big Data Analytics</li>
+                </ul>
+                <div class="resume-timeline-highlight">
+                  <span class="resume-highlight-tag">CGPA: 9.05/10 (Current)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="resume-timeline-item">
+            <div class="resume-timeline-marker">
+              <div class="resume-marker-dot"></div>
+              <div class="resume-marker-line"></div>
+            </div>
+            <div class="resume-timeline-details">
+              <div class="resume-timeline-date">2023</div>
+              <h4>Class 12th - Science Stream</h4>
+              <div class="resume-timeline-subtitle">Dreamland School, Uttarpara , West Bengal</div>
+              <div class="resume-timeline-description">
+                <p>Completed higher secondary education with focus on Science and Mathematics.</p>
+                <div class="resume-subject-breakdown">
+                  <div class="resume-subject-item">
+                    <span class="resume-subject-name">Physics</span>
+                    <span class="resume-subject-grade">88%</span>
+                  </div>
+                  <div class="resume-subject-item">
+                    <span class="resume-subject-name">Chemistry</span>
+                    <span class="resume-subject-grade">85%</span>
+                  </div>
+                  <div class="resume-subject-item">
+                    <span class="resume-subject-name">Mathematics</span>
+                    <span class="resume-subject-grade">92%</span>
+                  </div>
+                  <div class="resume-subject-item">
+                    <span class="resume-subject-name">Computer Science</span>
+                    <span class="resume-subject-grade">90%</span>
+                  </div>
+                  <div class="resume-subject-item">
+                    <span class="resume-subject-name">English</span>
+                    <span class="resume-subject-grade">82%</span>
+                  </div>
+                </div>
+                <div class="resume-timeline-highlight">
+                  <span class="resume-highlight-tag">Overall Percentage: 86%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="resume-timeline-item">
+            <div class="resume-timeline-marker">
+              <div class="resume-marker-dot"></div>
+            </div>
+            <div class="resume-timeline-details">
+              <div class="resume-timeline-date">2021</div>
+              <h4>Class 10th</h4>
+              <div class="resume-timeline-subtitle">Dreamland School, Uttarpara , West Bengal</div>
+              <div class="resume-timeline-description">
+                <p>Completed secondary education with distinction in Mathematics and Science.</p>
+                <div class="resume-timeline-highlight">
+                  <span class="resume-highlight-tag">Overall Percentage: 83%</span>
+                  <span class="resume-highlight-tag">School Topper in Mathematics</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience Timeline -->
+      <div class="resume-timeline-section fade-in">
+        <div class="resume-timeline-header">
+          <i class="fas fa-briefcase"></i>
+          <h3>Professional Experience</h3>
+        </div>
+        <div class="resume-timeline-content">
+          <div class="resume-timeline-item">
+            <div class="resume-timeline-marker">
+              <div class="resume-marker-dot"></div>
+              <div class="resume-marker-line"></div>
+            </div>
+            <div class="resume-timeline-details">
+              <div class="resume-timeline-date">Summer 2024</div>
+              <h4>Data Science Intern</h4>
+              <div class="resume-timeline-subtitle">Tech Solutions Inc., Remote</div>
+              <div class="resume-timeline-description">
+                <p>Worked as part of the data analytics team to support various client projects:</p>
+                <ul>
+                  <li>Developed Python scripts for automated data collection and cleaning</li>
+                  <li>Assisted in building predictive models for customer behavior analysis</li>
+                  <li>Created interactive dashboards using Tableau for data visualization</li>
+                  <li>Collaborated with senior data scientists on machine learning projects</li>
+                  <li>Prepared technical documentation and reports for stakeholders</li>
+                </ul>
+                <div class="resume-tech-used">
+                  <span class="resume-tech-tag">Python</span>
+                  <span class="resume-tech-tag">Pandas</span>
+                  <span class="resume-tech-tag">Tableau</span>
+                  <span class="resume-tech-tag">SQL</span>
+                  <span class="resume-tech-tag">Machine Learning</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="resume-timeline-item">
+            <div class="resume-timeline-marker">
+              <div class="resume-marker-dot"></div>
+            </div>
+            <div class="resume-timeline-details">
+              <div class="resume-timeline-date">2024 - Present</div>
+              <h4>Freelance Web Developer</h4>
+              <div class="resume-timeline-subtitle">Self-Employed</div>
+              <div class="resume-timeline-description">
+                <p>Developing responsive websites and web applications for small businesses and startups:</p>
+                <ul>
+                  <li>Designed and developed 5+ responsive websites using modern frameworks</li>
+                  <li>Implemented SEO best practices resulting in 40% increase in client website traffic</li>
+                  <li>Created custom WordPress themes and plugins for specific client requirements</li>
+                  <li>Optimized website performance, reducing load times by 50% on average</li>
+                  <li>Provided ongoing maintenance and support services</li>
+                </ul>
+                <div class="resume-tech-used">
+                  <span class="resume-tech-tag">HTML/CSS</span>
+                  <span class="resume-tech-tag">JavaScript</span>
+                  <span class="resume-tech-tag">React</span>
+                  <span class="resume-tech-tag">WordPress</span>
+                  <span class="resume-tech-tag">SEO</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills & Expertise -->
+      <div class="resume-timeline-section fade-in">
+        <div class="resume-timeline-header">
+          <i class="fas fa-code"></i>
+          <h3>Technical Skills</h3>
+        </div>
+        <div class="resume-skills-categories">
+          <div class="resume-skill-category">
+            <h4>Programming Languages</h4>
+            <div class="resume-skill-items">
+              <div class="resume-skill-item">
+                <span class="resume-skill-name">Java</span>
+                <div class="resume-skill-level">
+                  <div class="resume-skill-progress" data-level="75"></div>
+                </div>
+                <span class="resume-skill-percent">75%</span>
+              </div>
+              <div class="resume-skill-item">
+                <span class="resume-skill-name">Python</span>
+                <div class="resume-skill-level">
+                  <div class="resume-skill-progress" data-level="80"></div>
+                </div>
+                <span class="resume-skill-percent">80%</span>
+              </div>
+              <div class="resume-skill-item">
+                <span class="resume-skill-name">C/C++</span>
+                <div class="resume-skill-level">
+                  <div class="resume-skill-progress" data-level="70"></div>
+                </div>
+                <span class="resume-skill-percent">70%</span>
+              </div>
+              <div class="resume-skill-item">
+                <span class="resume-skill-name">JavaScript</span>
+                <div class="resume-skill-level">
+                  <div class="resume-skill-progress" data-level="75"></div>
+                </div>
+                <span class="resume-skill-percent">75%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="resume-skill-category">
+            <h4>Data Science & Analytics</h4>
+            <div class="resume-skill-items">
+              <div class="resume-skill-item">
+                <span class="resume-skill-name">Data Visualization</span>
+                <div class="resume-skill-level">
+                  <div class="resume-skill-progress" data-level="80"></div>
+                </div>
+                <span class="resume-skill-percent">80%</span>
+              </div>
+              <div class="resume-skill-item">
+                <span class="resume-skill-name">Statistical Analysis</span>
+                <div class="resume-skill-level">
+                  <div class="resume-skill-progress" data-level="75"></div>
+                </div>
+                <span class="resume-skill-percent">75%</span>
+              </div>
+              <div class="resume-skill-item">
+                <span class="resume-skill-name">Machine Learning</span>
+                <div class="resume-skill-level">
+                  <div class="resume-skill-progress" data-level="70"></div>
+                </div>
+                <span class="resume-skill-percent">70%</span>
+              </div>
+              <div class="resume-skill-item">
+                <span class="resume-skill-name">Data Wrangling</span>
+                <div class="resume-skill-level">
+                  <div class="resume-skill-progress" data-level="85"></div>
+                </div>
+                <span class="resume-skill-percent">85%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certifications & Achievements -->
+      <div class="resume-timeline-section fade-in">
+        <div class="resume-timeline-header">
+          <i class="fas fa-trophy"></i>
+          <h3>Certifications & Achievements</h3>
+        </div>
+        <div class="resume-achievements-grid">
+          <div class="resume-achievement-card">
+            <div class="resume-achievement-icon">
+              <i class="fas fa-certificate"></i>
+            </div>
+            <div class="resume-achievement-content">
+              <h4>Python for Data Science</h4>
+              <div class="resume-achievement-meta">Coursera • 2024</div>
+              <p>Completed comprehensive course covering data manipulation, analysis, and visualization with Python libraries.</p>
+            </div>
+          </div>
+
+          <div class="resume-achievement-card">
+            <div class="resume-achievement-icon">
+              <i class="fas fa-certificate"></i>
+            </div>
+            <div class="resume-achievement-content">
+              <h4>Web Development Fundamentals</h4>
+              <div class="resume-achievement-meta">Udemy • 2024</div>
+              <p>Mastered HTML5, CSS3, JavaScript and responsive web design principles.</p>
+            </div>
+          </div>
+
+          <div class="resume-achievement-card">
+            <div class="resume-achievement-icon">
+              <i class="fas fa-award"></i>
+            </div>
+            <div class="resume-achievement-content">
+              <h4>Academic Excellence Award</h4>
+              <div class="resume-achievement-meta">Dreamland School • 2023</div>
+              <p>Awarded for outstanding performance in Class 12th Board Examinations.</p>
+            </div>
+          </div>
+
+          <div class="resume-achievement-card">
+            <div class="resume-achievement-icon">
+              <i class="fas fa-code"></i>
+            </div>
+            <div class="resume-achievement-content">
+              <h4>Hackathon Finalist</h4>
+              <div class="resume-achievement-meta">University Tech Fest • 2024</div>
+              <p>Finalist in annual coding competition for developing an innovative data visualization tool.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Personal Projects -->
+      <div class="resume-timeline-section fade-in">
+        <div class="resume-timeline-header">
+          <i class="fas fa-project-diagram"></i>
+          <h3>Key Academic Projects</h3>
+        </div>
+        <div class="resume-projects-grid">
+          <div class="resume-project-card">
+            <h4>Customer Segmentation Analysis</h4>
+            <div class="resume-project-meta">Python, K-means Clustering, Pandas</div>
+            <p>Implemented unsupervised machine learning to segment customers based on purchasing behavior, resulting in targeted marketing strategy.</p>
+            <div class="resume-project-highlights">
+              <span class="resume-highlight">Reduced marketing costs by 15%</span>
+              <span class="resume-highlight">Improved customer engagement by 25%</span>
+            </div>
+          </div>
+
+          <div class="resume-project-card">
+            <h4>Stock Price Prediction Model</h4>
+            <div class="resume-project-meta">Python, LSTM, TensorFlow</div>
+            <p>Developed a deep learning model to predict stock prices with 85% accuracy using historical data and technical indicators.</p>
+            <div class="resume-project-highlights">
+              <span class="resume-highlight">85% prediction accuracy</span>
+              <span class="resume-highlight">Real-time data processing</span>
+            </div>
+          </div>
+
+          <div class="resume-project-card">
+            <h4>E-commerce Analytics Dashboard</h4>
+            <div class="resume-project-meta">Tableau, SQL, Excel</div>
+            <p>Created an interactive dashboard for e-commerce business to track sales performance, customer behavior, and inventory management.</p>
+            <div class="resume-project-highlights">
+              <span class="resume-highlight">30% faster decision making</span>
+              <span class="resume-highlight">Automated reporting system</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
   <section id="contact" class="section">
     <div class="container">
@@ -1608,6 +2590,163 @@ document.addEventListener('DOMContentLoaded', function() {
       body.style.overflow = '';
     });
   });
+});
+function createParticles() {
+  const particlesContainer = document.getElementById('particles');
+  const particleCount = window.innerWidth > 768 ? 80 : 40; 
+
+  for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement('div');
+    particle.classList.add('particle');
+
+    const size = Math.random() * 8 + 3;
+    const opacity = Math.random() * 0.4 + 0.2;
+    const blur = Math.random() * 2;
+    const colorShift = Math.random() * 30 - 15;
+
+    const startX = Math.random() * 100;
+    const startY = Math.random() * 100;
+
+    const midX = startX + (Math.random() * 20 - 10);
+    const midY = startY - (Math.random() * 40 + 20);
+    const endX = midX + (Math.random() * 10 - 5);
+    const endY = midY - (Math.random() * 40 + 20);
+
+    const duration = Math.random() * 20 + 10; // 10–30s
+    const delay = Math.random() * 10;
+
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    particle.style.left = `${startX}%`;
+    particle.style.top = `${startY}%`;
+    particle.style.opacity = opacity;
+    particle.style.filter = `blur(${blur}px) hue-rotate(${colorShift}deg)`;
+    particle.style.animationDuration = `${duration}s`;
+    particle.style.animationDelay = `${delay}s`;
+
+    particle.style.setProperty("--x-start", `${startX}vw`);
+    particle.style.setProperty("--y-start", `${startY}vh`);
+    particle.style.setProperty("--x-mid", `${midX}vw`);
+    particle.style.setProperty("--y-mid", `${midY}vh`);
+    particle.style.setProperty("--x-end", `${endX}vw`);
+    particle.style.setProperty("--y-end", `${endY}vh`);
+
+    particle.style.setProperty("--scale-start", Math.random() * 0.8 + 0.4);
+    particle.style.setProperty("--scale-mid", Math.random() * 1.2 + 0.8);
+    particle.style.setProperty("--scale-end", Math.random() * 0.8 + 0.4);
+
+    particle.style.setProperty("--opacity-start", opacity);
+    particle.style.setProperty("--opacity-mid", Math.min(1, opacity + 0.2));
+    particle.style.setProperty("--opacity-end", opacity * 0.5);
+
+    particlesContainer.appendChild(particle);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  createParticles();
+
+  window.addEventListener("resize", () => {
+    const container = document.getElementById("particles");
+    container.innerHTML = "";
+    createParticles();
+  });
+});
+
+ // Resume Section JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+  // Animate resume skill progress bars
+  const resumeSkillProgress = document.querySelectorAll('.resume-skill-progress');
+  
+  function animateResumeSkillBars() {
+    resumeSkillProgress.forEach(bar => {
+      const barPosition = bar.getBoundingClientRect().top;
+      const screenPosition = window.innerHeight / 1.3;
+      
+      if (barPosition < screenPosition) {
+        const level = bar.getAttribute('data-level');
+        bar.style.width = level + '%';
+      }
+    });
+  }
+  
+  // Initialize all skill bars to 0
+  resumeSkillProgress.forEach(bar => {
+    bar.style.width = '0';
+  });
+  
+  // Animate on scroll
+  window.addEventListener('scroll', animateResumeSkillBars);
+  
+  // Initial check on page load
+  animateResumeSkillBars();
+  
+  // Resume download button enhancement
+  const resumeDownloadBtn = document.querySelector('.resume-download .btn');
+  if (resumeDownloadBtn) {
+    resumeDownloadBtn.addEventListener('click', function(e) {
+      // Add download animation
+      this.classList.add('downloading');
+      setTimeout(() => {
+        this.classList.remove('downloading');
+      }, 1000);
+      
+      
+    });
+  }
+  
+  // Add animation to timeline items on scroll
+  const timelineItems = document.querySelectorAll('.resume-timeline-item');
+  
+  function animateTimelineItems() {
+    timelineItems.forEach(item => {
+      const itemPosition = item.getBoundingClientRect().top;
+      const screenPosition = window.innerHeight / 1.2;
+      
+      if (itemPosition < screenPosition) {
+        item.style.opacity = '1';
+        item.style.transform = 'translateX(0)';
+      }
+    });
+  }
+  
+  // Initialize timeline items
+  timelineItems.forEach(item => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateX(-20px)';
+    item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  });
+  
+  // Animate on scroll
+  window.addEventListener('scroll', animateTimelineItems);
+  
+  // Initial check on page load
+  animateTimelineItems();
+  
+  // Add hover effects to achievement cards
+  const achievementCards = document.querySelectorAll('.resume-achievement-card');
+  achievementCards.forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-8px) scale(1.02)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0) scale(1)';
+    });
+  });
+  
+  // Add click animation to project cards
+  const projectCards = document.querySelectorAll('.resume-project-card');
+  projectCards.forEach(card => {
+    card.addEventListener('click', function() {
+      this.style.transform = 'scale(0.98)';
+      setTimeout(() => {
+        this.style.transform = '';
+      }, 200);
+    });
+  });
+  
+ 
 });
   </script>
 </body>
