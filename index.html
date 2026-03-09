@@ -11,11 +11,11 @@
     <meta name="keywords"
         content="Anurag Rajput, Data Science Student, NeoBrutalist, Portfolio, Web Development, UI/UX, Javascript, React">
     <meta name="author" content="Anurag Rajput">
-    <link rel="canonical" href="https://instai4.github.io/PORT-FOLIO/>
+    <link rel="canonical" href="https://anurag-portfolio.netlify.app/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://instai4.github.io/PORT-FOLIO/>
+    <meta property="og:url" content="https://anurag-portfolio.netlify.app/">
     <meta property="og:title" content="ANURAG RAJPUT | Data Science Student">
     <meta property="og:description"
         content="Data Science Student specializing in high-performance NeoBrutalist web experiences.">
@@ -23,7 +23,7 @@
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://instai4.github.io/PORT-FOLIO/>
+    <meta property="twitter:url" content="https://anurag-portfolio.netlify.app/">
     <meta property="twitter:title" content="ANURAG RAJPUT | Data Science Student">
     <meta property="twitter:description"
         content="Data Science Student specializing in high-performance NeoBrutalist web experiences.">
@@ -53,7 +53,7 @@
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Anurag Rajput",
-      "url": "https://instai4.github.io/PORT-FOLIO/,
+      "url": "https://anurag-portfolio.netlify.app/",
       "jobTitle": "Data Science Student",
       "image": "https://anurag-portfolio.netlify.app/Assets/images/logo.png",
       "knowsAbout": ["Data Science", "Java", "Python", "SQL", "Machine Learning", "Web Development", "NeoBrutalist Design"],
@@ -858,27 +858,36 @@
                     </div>
                 </div>
 
-                <form class="space-y-6 bg-gray-50 p-6 border-2 border-black">
-                    <div class="flex flex-col">
-                        <label class="font-mono font-bold mb-1 uppercase text-xs">Identity</label>
-                        <input type="text" placeholder="NAME / COMPANY"
-                            class="bg-white border-2 border-black p-3 font-bold focus:outline-none focus:bg-neo-yellow focus:shadow-hard-sm transition-all cursor-hover">
-                    </div>
-                    <div class="flex flex-col">
-                        <label class="font-mono font-bold mb-1 uppercase text-xs">Coordinates</label>
-                        <input type="email" placeholder="EMAIL ADDRESS"
-                            class="bg-white border-2 border-black p-3 font-bold focus:outline-none focus:bg-neo-yellow focus:shadow-hard-sm transition-all cursor-hover">
-                    </div>
-                    <div class="flex flex-col">
-                        <label class="font-mono font-bold mb-1 uppercase text-xs">Transmission</label>
-                        <textarea rows="4" placeholder="PROJECT DETAILS..."
-                            class="bg-white border-2 border-black p-3 font-bold focus:outline-none focus:bg-neo-yellow focus:shadow-hard-sm transition-all resize-none cursor-hover"></textarea>
-                    </div>
-                    <button type="submit"
-                        class="w-full bg-neo-blue text-white font-black text-xl py-4 border-2 border-black shadow-hard neo-button hover:bg-neo-black hover:translate-y-1 hover:shadow-none transition-all cursor-hover">
-                        TRANSMIT DATA
-                    </button>
-                </form>
+              <form id="contact-form" class="space-y-6 bg-gray-50 p-6 border-2 border-black">
+    <!-- Hidden field for Google Apps Script URL (replace with your actual URL) -->
+    <input type="hidden" name="scriptURL" value="https://script.google.com/macros/s/AKfycbzNAY58CqyCGB_FrVgNcpusoZqSroCOmVDDp0NbR6MbOmsc7IoaNdzjfLLu25TmeBZ27g/exec">
+
+    <!-- Status message display (hidden initially) -->
+    <div id="form-status" class="text-center font-mono text-sm hidden"></div>
+
+    <div class="flex flex-col">
+        <label class="font-mono font-bold mb-1 uppercase text-xs">Identity</label>
+        <input type="text" required name="name" placeholder="NAME / COMPANY"
+            class="bg-white border-2 border-black p-3 font-bold focus:outline-none focus:bg-neo-yellow focus:shadow-hard-sm transition-all cursor-hover">
+    </div>
+
+    <div class="flex flex-col">
+        <label class="font-mono font-bold mb-1 uppercase text-xs">Coordinates</label>
+        <input type="email"  required name="email" placeholder="EMAIL ADDRESS"
+            class="bg-white border-2 border-black p-3 font-bold focus:outline-none focus:bg-neo-yellow focus:shadow-hard-sm transition-all cursor-hover">
+    </div>
+
+    <div class="flex flex-col">
+        <label class="font-mono font-bold mb-1 uppercase text-xs">Transmission</label>
+        <textarea name="message" required rows="4" placeholder="PROJECT DETAILS..."
+            class="bg-white border-2 border-black p-3 font-bold focus:outline-none focus:bg-neo-yellow focus:shadow-hard-sm transition-all resize-none cursor-hover"></textarea>
+    </div>
+
+    <button type="submit"
+        class="w-full bg-neo-blue text-white font-black text-xl py-4 border-2 border-black shadow-hard neo-button hover:bg-neo-black hover:translate-y-1 hover:shadow-none transition-all cursor-hover">
+        TRANSMIT DATA
+    </button>
+</form>
             </div>
         </div>
     </section>
@@ -1040,6 +1049,52 @@
             let scrolled = (winScroll / height) * 100;
             document.getElementById("progressBar").style.width = scrolled + "%";
         };
+        // Google Sheets form submission
+const contactForm = document.getElementById('contact-form');
+const formStatus = document.getElementById('form-status');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Show sending status
+        formStatus.classList.remove('hidden', 'bg-red-200', 'text-red-800', 'bg-green-200', 'text-green-800');
+        formStatus.classList.add('bg-blue-200', 'text-blue-800');
+        formStatus.textContent = 'Sending...';
+
+        // Collect form data
+        const formData = new FormData(contactForm);
+        const scriptURL = formData.get('scriptURL'); // hidden input
+
+        // Convert to URL-encoded string (Google Apps Script standard)
+        const urlEncoded = new URLSearchParams(formData).toString();
+
+        try {
+            const response = await fetch(scriptURL, {
+                method: 'POST',
+                body: urlEncoded,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+
+            if (response.ok) {
+                formStatus.classList.remove('bg-blue-200', 'text-blue-800');
+                formStatus.classList.add('bg-green-200', 'text-green-800');
+                formStatus.textContent = '✅ Message sent successfully!';
+                contactForm.reset(); // optional: clear form
+            } else {
+                throw new Error('Server error');
+            }
+        } catch (error) {
+            formStatus.classList.remove('bg-blue-200', 'text-blue-800');
+            formStatus.classList.add('bg-red-200', 'text-red-800');
+            formStatus.textContent = '❌ Failed to send. Please try again later.';
+            console.error('Submission error:', error);
+        }
+    });
+}
     </script>
 </body>
+
 </html>
