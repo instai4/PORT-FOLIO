@@ -39,7 +39,7 @@
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-TLNG322R');</script>
     <!-- End Google Tag Manager -->
-    <title>ANURAG RAJPUT | Data Science Student </title>
+    <title>ANURAG RAJPUT | Data Science Student</title>
 
     <!-- Theme & Performance -->
     <meta name="theme-color" content="#121212">
@@ -1095,6 +1095,172 @@ if (contactForm) {
     });
 }
     </script>
+    <!-- TERMINAL.exe LAUNCHER WIDGET -->
+<style>
+  #term-fab{
+    position:fixed;bottom:2rem;right:2rem;z-index:9990;
+    width:56px;height:56px;border-radius:14px;
+    background:#04040f;border:2px solid #4FC3F7;
+    box-shadow:0 0 20px rgba(79,195,247,.35),4px 4px 0 rgba(79,195,247,.15);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;transition:all .2s cubic-bezier(.34,1.56,.64,1);
+    font-family:'JetBrains Mono',monospace;
+  }
+  #term-fab:hover{
+    transform:translate(-3px,-3px) scale(1.08);
+    box-shadow:0 0 30px rgba(79,195,247,.55),6px 6px 0 rgba(79,195,247,.2);
+    border-color:#00E5FF;
+  }
+  #term-fab:active{transform:translate(1px,1px) scale(.97)}
+  #term-fab svg{width:26px;height:26px}
+
+  /* ping ring */
+  #term-fab::before{
+    content:'';position:absolute;inset:-6px;border-radius:20px;
+    border:2px solid rgba(79,195,247,.35);
+    animation:term-ping 2.5s ease-out infinite;
+  }
+  @keyframes term-ping{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.3);opacity:0}}
+
+  /* tooltip */
+  #term-fab::after{
+    content:'TERMINAL.exe';
+    position:absolute;right:calc(100% + 10px);top:50%;transform:translateY(-50%);
+    background:#04040f;border:1px solid #4FC3F7;color:#4FC3F7;
+    font-family:'JetBrains Mono',monospace;font-size:.58rem;font-weight:700;
+    letter-spacing:.1em;padding:4px 10px;border-radius:6px;white-space:nowrap;
+    opacity:0;pointer-events:none;
+    transition:opacity .15s;
+    box-shadow:0 0 12px rgba(79,195,247,.2);
+  }
+  #term-fab:hover::after{opacity:1}
+
+  /* badge */
+  #term-badge{
+    position:absolute;top:-6px;right:-6px;
+    width:16px;height:16px;border-radius:50%;
+    background:#00FF94;border:2px solid #04040f;
+    animation:term-blink 1.5s step-end infinite;
+  }
+  @keyframes term-blink{50%{opacity:0}}
+
+  /* overlay */
+  #term-overlay{
+    position:fixed;inset:0;z-index:9991;
+    background:rgba(4,4,15,.7);backdrop-filter:blur(6px);
+    display:none;opacity:0;transition:opacity .25s;
+  }
+  #term-overlay.show{display:block}
+  #term-overlay.visible{opacity:1}
+
+  /* iframe container */
+  #term-panel{
+    position:fixed;z-index:9992;
+    bottom:5rem;right:2rem;
+    width:min(820px,calc(100vw - 2rem));
+    height:min(560px,calc(100vh - 7rem));
+    border-radius:14px;overflow:hidden;
+    border:2px solid #4FC3F7;
+    box-shadow:0 0 60px rgba(79,195,247,.25),0 30px 80px rgba(0,0,0,.6);
+    transform:translateY(20px) scale(.96);opacity:0;
+    transition:all .3s cubic-bezier(.34,1.56,.64,1);
+    display:none;
+  }
+  #term-panel.show{display:block}
+  #term-panel.visible{transform:translateY(0) scale(1);opacity:1}
+  #term-panel iframe{width:100%;height:100%;border:none;display:block}
+
+  /* close btn */
+  #term-close{
+    position:absolute;top:10px;right:12px;z-index:9993;
+    width:28px;height:28px;border-radius:7px;
+    background:rgba(4,4,15,.9);border:1px solid rgba(79,195,247,.3);
+    color:#4FC3F7;font-size:.75rem;
+    display:none;align-items:center;justify-content:center;
+    cursor:pointer;transition:all .15s;
+  }
+  #term-close.show{display:flex}
+  #term-close:hover{background:#FF5555;border-color:#FF5555;color:#fff}
+</style>
+
+<!-- FAB BUTTON -->
+<div id="term-fab" onclick="termToggle()" title="Open Terminal">
+  <div id="term-badge"></div>
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="2" y="4" width="20" height="16" rx="3" stroke="#4FC3F7" stroke-width="1.5"/>
+    <path d="M7 9l3 3-3 3" stroke="#00E5FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M13 15h4" stroke="#4FC3F7" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<!-- OVERLAY -->
+<div id="term-overlay" onclick="termClose()"></div>
+
+<!-- CLOSE BTN -->
+<div id="term-close" onclick="termClose()">✕</div>
+
+<!-- TERMINAL PANEL -->
+<div id="term-panel">
+  <iframe id="term-iframe" src="" allow="clipboard-write" loading="lazy"></iframe>
+</div>
+
+<script>
+  const TERMINAL_URL = 'https://terminal-exe.vercel.app/'; // <-- replace with your deployed URL
+
+  let termOpen = false;
+  let termLoaded = false;
+
+  function termToggle() {
+    termOpen ? termClose() : termLaunch();
+  }
+
+  function termLaunch() {
+    termOpen = true;
+    const panel = document.getElementById('term-panel');
+    const overlay = document.getElementById('term-overlay');
+    const close = document.getElementById('term-close');
+    const iframe = document.getElementById('term-iframe');
+
+    // load iframe only once
+    if (!termLoaded) {
+      iframe.src = TERMINAL_URL;
+      termLoaded = true;
+    }
+
+    overlay.classList.add('show');
+    panel.classList.add('show');
+    close.classList.add('show');
+
+    requestAnimationFrame(() => {
+      overlay.classList.add('visible');
+      panel.classList.add('visible');
+    });
+
+    // hide ping ring once opened
+    document.getElementById('term-fab').style.setProperty('--ping', 'none');
+  }
+
+  function termClose() {
+    termOpen = false;
+    const panel = document.getElementById('term-panel');
+    const overlay = document.getElementById('term-overlay');
+    const close = document.getElementById('term-close');
+
+    panel.classList.remove('visible');
+    overlay.classList.remove('visible');
+
+    setTimeout(() => {
+      panel.classList.remove('show');
+      overlay.classList.remove('show');
+      close.classList.remove('show');
+    }, 300);
+  }
+
+  // ESC to close
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && termOpen) termClose();
+  });
+</script>
 </body>
 
 </html>
